@@ -1,0 +1,30 @@
+# Environnement virtuel
+venv/
+env/
+.venv/
+
+# Fichiers Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Fichiers de données (optionnel)
+data/raw/
+*.csv
+*.xlsx
+
+# Fichiers de modèles (à commenter si vous voulez inclure le modèle)
+# *.pkl
+# *.joblib
+
+# Fichiers temporaires
+.DS_Store
+*.tmp
+*.log
+
+# Notebooks (optionnel)
+# *.ipynb
+
+# Fichiers de configuration locaux
+.env
+config.local.py
