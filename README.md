@@ -267,13 +267,9 @@ L'application Streamlit permet désormais aux agents de MEDIABOX et aux proprié
 Le pipeline est totalement reproductible, et toutes les décisions d'ingénierie sont strictement justifiées par les observations de l'EDA.
 
 📝 Auteurs
-Équipe MEDIABOX Burundi
 
-[Nom de l'étudiant]
+Ir.Chrysanthe Beni JOY
 
-[Nom de l'encadrant]
-
-Contact : [email@mediabox.bi]
 
 📄 Licence
 Ce projet est développé dans le cadre d'une mission interne de MEDIABOX Burundi.
