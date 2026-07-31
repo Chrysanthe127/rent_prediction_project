@@ -121,38 +121,38 @@ Optimisation du modèle **Gradient Boosting** via `GridSearchCV`.
 ## 📁 Structure du dépôt
 rent_prediction_project/
 │
-├── data/
-│ └── rent_prediction.csv # Données brutes
+├── 📂 data/                                 # Données du projet
+│   └── 📄 rent_prediction.csv               # Dataset brut (510 lignes, 12 colonnes)
 │
-├── notebooks/ # Notebooks Jupyter (exécutés dans Colab)
-│ ├── 01_EDA.ipynb
-│ ├── 02_Data_Preparation.ipynb
-│ ├── 03_Feature_Engineering.ipynb
-│ ├── 04_Baseline_Model.ipynb
-│ ├── 05_Model_Experiments.ipynb
-│ ├── 06_Hyperparameter_Tuning.ipynb
-│ └── 07_Feature_Importance.ipynb
+├── 📂 notebooks/                            # Notebooks d'analyse et de modélisation
+│   ├── 📓 01_EDA.ipynb                      # Analyse exploratoire des données
+│   ├── 📓 02_Data_Preparation.ipynb         # Nettoyage et prétraitement
+│   ├── 📓 03_Feature_Engineering.ipynb      # Création des variables dérivées
+│   ├── 📓 04_Baseline_Model.ipynb           # Modèles de référence
+│   ├── 📓 05_Model_Experiments.ipynb        # Comparaison des algorithmes
+│   ├── 📓 06_Hyperparameter_Tuning.ipynb    # Optimisation des hyperparamètres
+│   └── 📓 07_Feature_Importance.ipynb       # Analyse d'importance des features
 │
-├── streamlit/
-│ └── app.py # Application Streamlit (développée dans VS Code)
+├── 📂 streamlit/                            # Application de déploiement
+│   └── 🖥️ app.py                            # Interface utilisateur Streamlit
 │
-├── models/
-│ └── best_model_tuned.pkl # Modèle final entraîné
+├── 📂 models/                               # Modèles entraînés
+│   └── 🧠 best_model_tuned.pkl              # Modèle final (Gradient Boosting)
 │
-├── reports/
-│ ├── Business_Understanding.md
-│ ├── EDA_Report.pdf
-│ └── Feature_Engineering_Report.md
+├── 📂 reports/                              # Documentation et rapports
+│   ├── 📄 Business_Understanding.md         # Compréhension du problème métier
+│   ├── 📄 EDA_Report.pdf                    # Rapport d'analyse exploratoire
+│   └── 📄 Feature_Engineering_Report.md     # Rapport du feature engineering
 │
-├── figures/
-│ └── feature_importance.png
+├── 📂 figures/                              # Visualisations exportées
+│   └── 📊 feature_importance.png            # Graphique des features importantes
 │
-├── logs/
-│ └── experiment_log.csv
+├── 📂 logs/                                 # Suivi des expériences
+│   └── 📋 experiment_log.csv                # Journal des performances des modèles
 │
-├── requirements.txt # Dépendances Python
-├── README.md # Documentation
-└── .gitignore # Exclusion des fichiers
+├── 📄 requirements.txt                      # Dépendances Python (versions figées)
+├── 📄 README.md                             # Documentation principale du projet
+└── 📄 .gitignore                            # Fichiers et dossiers exclus de Git
 
 text
 
