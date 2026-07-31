@@ -145,9 +145,9 @@ rent_prediction_project/
 │   ├── Business_Understanding.md
 │   ├── EDA_Report.pdf
 │   ├── Feature_Engineering_Report.md
-│   └── figures/
+└── figures/
 │       └── feature_importance.png
-│
+│   
 ├── logs/
 │   └── experiment_log.csv
 │
