@@ -118,44 +118,43 @@ Optimisation du modèle **Gradient Boosting** via `GridSearchCV`.
 
 ---
 
-## 📁 Structure du dépôt
+## Structure du projet
+
+```text
 rent_prediction_project/
 │
 ├── data/
-│ └── rent_prediction.csv # Données brutes
+│   └── rent_prediction.csv              # Données brutes
 │
-├── notebooks/ # Notebooks Jupyter (exécutés dans Colab)
-│ ├── 01_EDA.ipynb
-│ ├── 02_Data_Preparation.ipynb
-│ ├── 03_Feature_Engineering.ipynb
-│ ├── 04_Baseline_Model.ipynb
-│ ├── 05_Model_Experiments.ipynb
-│ ├── 06_Hyperparameter_Tuning.ipynb
-│ └── 07_Feature_Importance.ipynb
+├── notebooks/
+│   ├── 01_EDA.ipynb
+│   ├── 02_Data_Preparation.ipynb
+│   ├── 03_Feature_Engineering.ipynb
+│   ├── 04_Baseline_Model.ipynb
+│   ├── 05_Model_Experiments.ipynb
+│   ├── 06_Hyperparameter_Tuning.ipynb
+│   └── 07_Feature_Importance.ipynb
 │
 ├── streamlit/
-│ └── app.py # Application Streamlit (développée dans VS Code)
+│   └── app.py                           # Application Streamlit
 │
 ├── models/
-│ └── best_model_tuned.pkl # Modèle final entraîné
+│   └── best_model_tuned.pkl             # Modèle entraîné
 │
 ├── reports/
-│ ├── Business_Understanding.md
-│ ├── EDA_Report.pdf
-│ └── Feature_Engineering_Report.md
-│
-├── figures/
-│ └── feature_importance.png
+│   ├── Business_Understanding.md
+│   ├── EDA_Report.pdf
+│   ├── Feature_Engineering_Report.md
+│   └── figures/
+│       └── feature_importance.png
 │
 ├── logs/
-│ └── experiment_log.csv
+│   └── experiment_log.csv
 │
-├── requirements.txt # Dépendances Python
-├── README.md # Documentation
-└── .gitignore # Exclusion des fichiers
-
-text
-
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
 
 ## 🛠️ Installation & Dépendances
 
