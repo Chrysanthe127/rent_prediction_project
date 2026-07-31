@@ -110,10 +110,11 @@ Optimisation du modèle **Gradient Boosting** via `GridSearchCV`.
 **Décision** : Le modèle réduit est recommandé pour le déploiement (simplification massive pour une perte minime de performance).
 
 ### Phase 9 — Deployment (Streamlit)
-- Interface web interactive avec **Streamlit**.
+- Interface web interactive développée avec **Streamlit** dans **VS Code**.
 - L'utilisateur saisit les 10 variables brutes.
 - L'application recalcule automatiquement : `Confort_Score`, `Chambres_par_Superficie`, transformations log, one-hot encoding.
 - Prédiction retournée en BIF via `np.expm1()`.
+- Déploiement sur **Streamlit Cloud** : [https://rentpredictionproject.streamlit.app](https://rentpredictionproject.streamlit.app)
 
 ---
 
@@ -123,7 +124,7 @@ rent_prediction_project/
 ├── data/
 │ └── rent_prediction.csv # Données brutes
 │
-├── notebooks/ # Notebooks Jupyter
+├── notebooks/ # Notebooks Jupyter (exécutés dans Colab)
 │ ├── 01_EDA.ipynb
 │ ├── 02_Data_Preparation.ipynb
 │ ├── 03_Feature_Engineering.ipynb
@@ -133,7 +134,7 @@ rent_prediction_project/
 │ └── 07_Feature_Importance.ipynb
 │
 ├── streamlit/
-│ └── app.py # Application Streamlit
+│ └── app.py # Application Streamlit (développée dans VS Code)
 │
 ├── models/
 │ └── best_model_tuned.pkl # Modèle final entraîné
@@ -159,15 +160,14 @@ text
 
 ## 🛠️ Installation & Dépendances
 
-### 1. Cloner le dépôt
+### 1. Télécharger le projet depuis Colab
 
+Tous les notebooks ont été développés et exécutés dans **Google Colab**. Une fois le travail terminé, le projet a été téléchargé depuis Colab sous forme de dossier (`rent_prediction_project`).
+
+### 2. Créer un environnement virtuel local
+
+**Windows :**
 ```bash
-git clone https://github.com/votre-username/rent-prediction-project.git
-cd rent-prediction-project
-2. Créer un environnement virtuel
-Windows :
-
-bash
 python -m venv venv
 venv\Scripts\activate
 macOS/Linux :
@@ -188,10 +188,8 @@ joblib==1.3.2
 matplotlib==3.7.2
 seaborn==0.12.2
 🚀 Exécution du projet
-1. Notebooks – Google Colab (recommandé)
-Les notebooks ont été développés et exécutés sur Google Colab.
-
-Pour les exécuter :
+1. Notebooks – Google Colab
+Les notebooks sont disponibles dans le dossier notebooks/ et peuvent être rouverts dans Colab :
 
 Ouvrez Google Colab
 
@@ -218,14 +216,14 @@ Astuce : Pour charger les données dans Colab, vous pouvez monter Google Drive o
 python
 from google.colab import drive
 drive.mount('/content/drive')
-2. Application Streamlit (Local)
-Assurez-vous d'être à la racine du projet et que models/best_model_tuned.pkl est présent.
+2. Application Streamlit (VS Code)
+L'application a été développée dans VS Code. Pour la lancer en local :
 
 bash
 streamlit run streamlit/app.py
 L'application est accessible à : http://localhost:8501
 
-3. Application en ligne
+3. Application en ligne (Streamlit Cloud)
 🔗 https://rentpredictionproject.streamlit.app
 
 📊 Résultats des modèles
@@ -267,9 +265,8 @@ L'application Streamlit permet désormais aux agents de MEDIABOX et aux proprié
 Le pipeline est totalement reproductible, et toutes les décisions d'ingénierie sont strictement justifiées par les observations de l'EDA.
 
 📝 Auteurs
+Équipe MEDIABOX Burundi
 
-Ir.Chrysanthe Beni JOY
+[Nom de l'étudiant]
 
-
-📄 Licence
-Ce projet est développé dans le cadre d'une mission interne de MEDIABOX Burundi.
+[Nom de l'encadrant]
