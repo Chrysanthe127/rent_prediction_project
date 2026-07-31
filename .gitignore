@@ -10,7 +10,7 @@ __pycache__/
 
 # Fichiers de données (optionnel)
 data/raw/
-*.csv
+
 *.xlsx
 
 # Fichiers de modèles (à commenter si vous voulez inclure le modèle)
