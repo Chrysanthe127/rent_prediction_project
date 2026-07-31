@@ -1,4 +1,4 @@
-# 🏠 Système de prédiction de loyer — MEDIABOX Burundi
+# 🏠 Système de prédiction de loyer — BUJUMBURA
 
 ---
 
