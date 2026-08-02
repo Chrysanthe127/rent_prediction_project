@@ -18,10 +18,10 @@ st.markdown("""
     /* ====== POLICE ====== */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-    * {
-        font-family: 'Inter', sans-serif;
-        color: #0F172A !important;  /* Texte noir forcé */
-    }
+    * * {
+    font-family: 'Inter', sans-serif;
+    color: #F8FAFC !important;
+}
 
     /* ====== FOND ====== */
     
@@ -42,14 +42,10 @@ st.markdown("""
 }
 
     /* ====== TITRES ====== */
-    h1 {
-        text-align: center;
-        font-weight: 800;
-        font-size: 2.5rem;
-        color: #0F172A !important;
-        margin-bottom: 0.2rem;
-        letter-spacing: -0.5px;
-    }
+h1 {
+    color: #38BDF8 !important;
+    text-shadow: 0 0 20px rgba(56,189,248,0.4);
+}
 
     .subtitle {
         text-align: center;
