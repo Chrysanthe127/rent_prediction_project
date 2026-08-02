@@ -4,7 +4,7 @@ import numpy as np
 import joblib
 from pathlib import Path
 
-# ================== CONFIGURATION ==================
+# ================== CONFIGURATION DE LA PAGE ==================
 st.set_page_config(
     page_title="Prédiction de loyer - Bujumbura",
     page_icon="🏠",
@@ -12,270 +12,196 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ================== CSS PERSONNALISÉ (design sombre, texte noir) ==================
+# ================== CSS PERSONNALISÉ OPTIMISÉ ==================
 st.markdown("""
 <style>
-    /* ====== POLICE ====== */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    /* Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-    * * {
-    font-family: 'Inter', sans-serif;
-    color: #F8FAFC !important;
-}
+    html, body, [class*="css"] {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
 
-    /* ====== FOND ====== */
-    
+    /* Arrière-plan global */
     .stApp {
-    background: linear-gradient(
-        135deg,
-        #0F172A 0%,
-        #1E293B 50%,
-        #334155 100%
-    );
-}
+        background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+        color: #F8FAFC;
+    }
 
-    /* ====== CONTENEUR ====== */
-.block-container {
-    padding: 2rem 1.5rem;
-    max-width: 850px;
-    margin: 0 auto;
-}
-
-    /* ====== TITRES ====== */
-h1 {
-    color: #38BDF8 !important;
-    text-shadow: 0 0 20px rgba(56,189,248,0.4);
-}
-
-    .subtitle {
+    /* En-tête principal */
+    .hero-header {
         text-align: center;
-        color: #334155 !important;
-        margin-top: -0.3rem;
-        font-weight: 400;
+        padding: 1.5rem 0 2rem 0;
+    }
+    .hero-title {
+        font-size: 2.3rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #38BDF8 0%, #818CF8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+    }
+    .hero-subtitle {
+        color: #94A3B8;
         font-size: 1rem;
+        font-weight: 400;
+        max-width: 600px;
+        margin: 0 auto;
     }
 
-    h2, h3, .stSubheader {
-        color: #0F172A !important;
-        font-weight: 600 !important;
-        letter-spacing: 0.3px;
+    /* Conteneur principal */
+    .block-container {
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+        max-width: 800px;
     }
 
-    /* ====== FORMULAIRE (carte blanche avec ombre) ====== */
+    /* ================== FORMULAIRE ================== */
     div[data-testid="stForm"] {
-        background: #FFFFFF;
-        padding: 2rem 2rem 1.8rem;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 2.2rem;
         border-radius: 24px;
-        border: 1px solid #E2E8F0;
-        box-shadow: 0 10px 25px -8px rgba(0,0,0,0.08);
-        transition: box-shadow 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
     }
 
-    div[data-testid="stForm"]:hover {
-        box-shadow: 0 20px 40px -12px rgba(0,0,0,0.12);
-    }
-
-    /* ====== LABELS ====== */
-    .stNumberInput > label,
-    .stSelectbox > label,
-    .stCheckbox label {
+    /* Titres dans le formulaire */
+    div[data-testid="stForm"] h3 {
         color: #0F172A !important;
-        font-weight: 600 !important;
-        font-size: 0.8rem !important;
-        letter-spacing: 0.4px;
-        text-transform: uppercase;
-        margin-bottom: 0.25rem !important;
+        font-weight: 700 !important;
+        font-size: 1.25rem !important;
+        margin-bottom: 1.5rem !important;
+        border-bottom: 2px solid #F1F5F9;
+        padding-bottom: 0.5rem;
     }
 
-    /* ====== INPUTS & SELECT ====== */
-    .stNumberInput > div > div > input,
-    .stSelectbox > div > div > div {
-        background: #F8FAFC !important;
+    /* Labels */
+    div[data-testid="stForm"] label {
+        color: #334155 !important;
+        font-weight: 600 !important;
+        font-size: 0.82rem !important;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* Champs texte / nombre / select */
+    .stNumberInput input, .stSelectbox div[role="button"] {
+        background-color: #F8FAFC !important;
         color: #0F172A !important;
         border-radius: 12px !important;
-        border: 1px solid #CBD5E1 !important;
-        padding: 0.6rem 1rem !important;
-        font-size: 0.95rem !important;
-        transition: all 0.2s ease;
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-    }
-
-    .stNumberInput > div > div > input:focus,
-    .stSelectbox > div > div > div:focus-within {
-        border-color: #0EA5E9 !important;
-        box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15), inset 0 2px 4px rgba(0,0,0,0.02) !important;
-        background: #FFFFFF !important;
-    }
-
-    /* ====== CHECKBOX (équipements) ====== */
-    .stCheckbox {
-        margin: 0.4rem 0;
-    }
-    .stCheckbox label {
-        display: flex;
-        align-items: center;
-        color: #0F172A !important;
+        border: 1.5px solid #E2E8F0 !important;
         font-weight: 500 !important;
-        background: #F8FAFC;
-        padding: 0.5rem 0.8rem;
-        border-radius: 10px;
-        border: 1px solid #E2E8F0;
-        transition: all 0.2s ease;
-        width: 100%;
-        cursor: pointer;
-        text-transform: none;
-        font-size: 0.9rem !important;
-    }
-    .stCheckbox label:hover {
-        background: #F1F5F9;
-        border-color: #94A3B8;
-    }
-    .stCheckbox div[data-testid="stCheckbox"] {
-        border-radius: 8px;
-        margin-right: 8px;
     }
 
-    /* ====== BOUTON PRINCIPAL ====== */
+    .stNumberInput input:focus, .stSelectbox div[role="button"]:focus {
+        border-color: #0EA5E9 !important;
+        box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15) !important;
+    }
+
+    /* Bouton d'envoi */
     div[data-testid="stFormSubmitButton"] button {
         width: 100%;
-        background: #0F172A !important;
+        background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%) !important;
         color: #FFFFFF !important;
-        border: none;
-        border-radius: 16px;
-        font-size: 1.1rem;
-        font-weight: 700;
-        padding: 0.8rem 1.5rem;
-        transition: all 0.25s ease;
-        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
-        letter-spacing: 0.5px;
-        margin-top: 0.5rem;
-        cursor: pointer;
+        border: none !important;
+        border-radius: 14px !important;
+        font-size: 1.05rem !important;
+        font-weight: 700 !important;
+        padding: 0.85rem 1.5rem !important;
+        margin-top: 1rem !important;
+        box-shadow: 0 10px 20px -5px rgba(14, 165, 233, 0.4);
+        transition: all 0.2s ease-in-out;
     }
 
     div[data-testid="stFormSubmitButton"] button:hover {
-        background: #1E293B !important;
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
+        box-shadow: 0 15px 25px -5px rgba(14, 165, 233, 0.5);
     }
 
-    div[data-testid="stFormSubmitButton"] button:active {
-        transform: translateY(0px);
-        box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2);
-    }
-
-    /* ====== MESSAGES SUCCÈS ====== */
-    div[data-testid="stSuccess"] {
-        background: #ECFDF5;
-        border: 1px solid #A7F3D0;
-        border-radius: 18px;
-        padding: 1.5rem;
-        color: #0F172A !important;
-        font-weight: 500;
-        text-align: center;
-    }
-    div[data-testid="stSuccess"] strong {
-        color: #0F172A;
-    }
-
-    /* ====== MESSAGES ERREUR ====== */
-    div[data-testid="stAlert"] {
-        background: #FEF2F2;
-        border: 1px solid #FCA5A5;
-        border-radius: 18px;
-        padding: 1.2rem;
-        color: #0F172A !important;
-        font-weight: 500;
-    }
-
-    /* ====== WARNING ====== */
-    div[data-testid="stWarning"] {
-        background: #FFFBEB;
-        border: 1px solid #FDE68A;
-        border-radius: 18px;
-        padding: 1rem;
-        color: #0F172A !important;
-    }
-
-    /* ====== CARTE RÉSULTAT ====== */
+    /* ================== CARTE DE RÉSULTAT ================== */
     .result-card {
-        background: #FFFFFF;
-        border: 1px solid #E2E8F0;
+        background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+        border: 2px solid #38BDF8;
         border-radius: 24px;
-        padding: 1.8rem;
-        margin-top: 1.5rem;
-        box-shadow: 0 8px 20px -8px rgba(0,0,0,0.06);
+        padding: 2rem;
+        margin-top: 2rem;
         text-align: center;
-        transition: box-shadow 0.3s ease;
+        box-shadow: 0 20px 40px -10px rgba(56, 189, 248, 0.2);
+        animation: fadeIn 0.4s ease-out;
     }
-    .result-card:hover {
-        box-shadow: 0 12px 30px -8px rgba(0,0,0,0.10);
-    }
-    .result-card .label {
-        color: #334155 !important;
-        font-size: 0.9rem;
-        font-weight: 500;
-        letter-spacing: 0.5px;
+
+    .result-badge {
+        display: inline-block;
+        background: #E0F2FE;
+        color: #0369A1;
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 0.35rem 1rem;
+        border-radius: 50px;
         text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-bottom: 0.75rem;
     }
-    .result-card .price {
+
+    .result-price {
         font-size: 3.2rem;
         font-weight: 800;
-        color: #0F172A !important;
-        margin: 0.2rem 0 0.3rem;
-        line-height: 1.2;
-    }
-    .result-card .details {
-        color: #334155 !important;
-        font-size: 0.9rem;
+        color: #0F172A;
+        letter-spacing: -1px;
+        line-height: 1.1;
+        margin-bottom: 1rem;
     }
 
-    /* ====== PIED DE PAGE ====== */
-    .footer {
-        text-align: center;
-        margin-top: 2.5rem;
-        padding-top: 1.2rem;
-        border-top: 1px solid #E2E8F0;
-        color: #64748B !important;
-        font-size: 0.8rem;
-        letter-spacing: 0.3px;
+    .result-features {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
     }
 
-    /* ====== SCROLLBAR ====== */
-    ::-webkit-scrollbar {
-        width: 6px;
+    .feature-chip {
         background: #F1F5F9;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: #CBD5E1;
+        color: #475569;
+        font-weight: 600;
+        font-size: 0.85rem;
+        padding: 0.4rem 0.9rem;
         border-radius: 10px;
     }
-    ::-webkit-scrollbar-thumb:hover {
-        background: #94A3B8;
+
+    /* Footer */
+    .footer {
+        text-align: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #64748B;
+        font-size: 0.85rem;
     }
 
-    /* ====== RESPONSIVE ====== */
-    @media (max-width: 640px) {
-        h1 { font-size: 1.8rem; }
-        div[data-testid="stForm"] { padding: 1.2rem; }
-        .result-card .price { font-size: 2.4rem; }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 </style>
 """, unsafe_allow_html=True)
 
-# ================== TITRE ==================
-st.title("Estimation du loyer mensuel")
-st.markdown('<p class="subtitle">Saisissez les caractéristiques de la maison pour obtenir une estimation en <strong>BIF</strong>.</p>', unsafe_allow_html=True)
+# ================== EN-TÊTE ==================
+st.markdown("""
+<div class="hero-header">
+    <div class="hero-title">Estimation de Loyer Intelligente</div>
+    <div class="hero-subtitle">Obtenez une évaluation précise et instantanée du loyer mensuel pour vos biens immobiliers à Bujumbura.</div>
+</div>
+""", unsafe_allow_html=True)
 
-# ================== CONSTANTES ==================
+# ================== CONSTANTES & CHARGEMENT ==================
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_PATH = BASE_DIR / "models" / "best_model_tuned.pkl"
 DATA_PATH = BASE_DIR / "data" / "feature_engineering_dataset.csv"
 
-# ================== CHARGEMENT ==================
 @st.cache_resource
 def load_model():
     if not MODEL_PATH.exists():
-        st.error(f"Modèle introuvable : {MODEL_PATH}")
+        st.error(f"⚠️ Modèle introuvable : {MODEL_PATH}")
         st.stop()
     try:
         return joblib.load(MODEL_PATH)
@@ -286,7 +212,7 @@ def load_model():
 @st.cache_data
 def load_feature_order():
     if not DATA_PATH.exists():
-        st.error(f"Fichier de données introuvable : {DATA_PATH}")
+        st.error(f"⚠️ Fichier de données introuvable : {DATA_PATH}")
         st.stop()
     try:
         df = pd.read_csv(DATA_PATH)
@@ -301,43 +227,53 @@ csv_cols = load_feature_order()
 
 if hasattr(model, "feature_names_in_"):
     final_cols = list(model.feature_names_in_)
-    missing_in_csv = set(final_cols) - set(csv_cols)
-    if missing_in_csv:
-        st.warning(f"Colonnes du modèle non trouvées dans le CSV : {missing_in_csv}")
 else:
     final_cols = csv_cols
 
-# ================== QUARTIERS ==================
 QUARTIERS = [
     "Buyenzi", "Bwiza", "Cibitoke", "Gasekebuye", "Gihosha", "Jabe",
     "Kamenge", "Kinama", "Kinanira", "Kiriri", "Musaga", "Ngagara",
     "Nyakabiga", "Rohero"
 ]
 
-# ================== FORMULAIRE ==================
+# ================== FORMULAIRE PRINCIPAL ==================
 with st.form("prediction_form"):
-    st.subheader("Caractéristiques du logement")
+    st.subheader("📍 Emplacement & Dimensions")
+    
+    col_q, col_s = st.columns([1, 1])
+    with col_q:
+        quartier = st.selectbox("Quartier", QUARTIERS)
+    with col_s:
+        superficie = st.number_input("Superficie totale (m²)", min_value=10, value=150, step=5)
+
     col1, col2 = st.columns(2)
     with col1:
         chambres = st.number_input("Nombre de chambres", min_value=1, value=3, step=1)
-        superficie = st.number_input("Superficie (m²)", min_value=10, value=150, step=5)
-        distance = st.number_input("Distance route principale (m)", min_value=0, value=200, step=10)
-        age = st.number_input("Âge de la maison (années)", min_value=0, value=20, step=1)
+        distance = st.number_input("Distance à la route (m)", min_value=0, value=200, step=10)
     with col2:
-        salon = st.selectbox("Salon", ["Non", "Oui"])
-        sdb = st.selectbox("Salle de bain intérieure", ["Non", "Oui"])
-        parking = st.selectbox("Parking", ["Non", "Oui"])
+        age = st.number_input("Âge du bâtiment (années)", min_value=0, value=10, step=1)
+        
+    st.subheader("✨ Équipements & Confort")
+    
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        salon = st.selectbox("Salon principal", ["Non", "Oui"])
+        sdb = st.selectbox("SDB Intérieure", ["Non", "Oui"])
+    with c2:
+        parking = st.selectbox("Espace Parking", ["Non", "Oui"])
+        jardin = st.selectbox("Jardin privatif", ["Non", "Oui"])
+    with c3:
         meuble = st.selectbox("Meublé", ["Non", "Oui"])
-        jardin = st.selectbox("Jardin", ["Non", "Oui"])
-    quartier = st.selectbox("Quartier", QUARTIERS)
-    submitted = st.form_submit_button("Estimer le loyer maintenant")
 
-# ================== PRÉDICTION ==================
+    submitted = st.form_submit_button("Calculer l'estimation du loyer")
+
+# ================== MOTEUR DE PRÉDICTION ==================
 def predict(chambres, superficie, distance, age,
             salon_val, sdb_val, parking_val, meuble_val, jardin_val,
             quartier):
     superficie_ok = max(superficie, 1e-6)
     chambres_ok = max(chambres, 1)
+    
     surface_par_chambre = superficie_ok / chambres_ok
     chambres_par_superficie = chambres / superficie_ok
     distance_log = np.log(distance + 1)
@@ -378,7 +314,7 @@ def predict(chambres, superficie, distance, age,
     input_df = input_df[final_cols]
     return model.predict(input_df)[0]
 
-# ================== AFFICHAGE RÉSULTAT ==================
+# ================== RÉSULTATS ==================
 if submitted:
     try:
         prediction = predict(
@@ -390,24 +326,31 @@ if submitted:
             1 if jardin == "Oui" else 0,
             quartier
         )
+        
+        # Formatage du prix
+        formatted_price = f"{prediction:,.0f}".replace(",", " ")
+
         st.markdown(f"""
         <div class="result-card">
-            <div class="label">Loyer mensuel estimé</div>
-            <div class="price">{prediction:,.0f} BIF</div>
-            <div class="details">{superficie:.0f} m² · {chambres} chambre(s) · {quartier}</div>
+            <div class="result-badge">Résultat de l'estimation</div>
+            <div class="result-price">{formatted_price} <span style="font-size: 1.5rem; font-weight: 600;">BIF / mois</span></div>
+            <div class="result-features">
+                <span class="feature-chip">📍 {quartier}</span>
+                <span class="feature-chip">📐 {superficie:.0f} m²</span>
+                <span class="feature-chip">🛏️ {chambres} ch.</span>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         st.balloons()
+        
     except Exception as e:
-        st.error(f"Erreur lors de la prédiction : {e}")
-        if st.checkbox("Afficher les détails techniques"):
-            st.write("**Colonnes attendues par le modèle :**", final_cols)
-            if 'input_df' in locals():
-                st.write("**Colonnes fournies :**", input_df.columns.tolist())
+        st.error(f"Une erreur est survenue lors du calcul : {e}")
+        with st.expander("Voir les détails d'erreur"):
+            st.write(e)
 
 # ================== PIED DE PAGE ==================
 st.markdown("""
 <div class="footer">
-    © 2026 MEDIABOX Burundi · Estimateur intelligent de loyers
+    © 2026 <strong>MEDIABOX Burundi</strong> · Solution d'évaluation immobilière par Machine Learning
 </div>
 """, unsafe_allow_html=True)
