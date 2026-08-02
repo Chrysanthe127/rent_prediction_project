@@ -24,16 +24,22 @@ st.markdown("""
     }
 
     /* ====== FOND ====== */
+    
     .stApp {
-        background: #F1F5F9;  /* Fond gris clair */
-    }
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #1E293B 50%,
+        #334155 100%
+    );
+}
 
     /* ====== CONTENEUR ====== */
-    .block-container {
-        padding: 2rem 1.5rem;
-        max-width: 800px;
-        margin: 0 auto;
-    }
+.block-container {
+    padding: 2rem 1.5rem;
+    max-width: 850px;
+    margin: 0 auto;
+}
 
     /* ====== TITRES ====== */
     h1 {
