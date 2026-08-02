@@ -12,7 +12,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ================== CSS PERSONNALISÉ OPTIMISÉ ==================
+# ================== CSS PERSONNALISÉ DARK MODERN ==================
 st.markdown("""
 <style>
     /* Google Fonts */
@@ -24,7 +24,7 @@ st.markdown("""
 
     /* Arrière-plan global */
     .stApp {
-        background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+        background: radial-gradient(circle at top, #1E293B 0%, #0F172A 60%, #020617 100%);
         color: #F8FAFC;
     }
 
@@ -34,12 +34,13 @@ st.markdown("""
         padding: 1.5rem 0 2rem 0;
     }
     .hero-title {
-        font-size: 2.3rem;
+        font-size: 2.5rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #38BDF8 0%, #818CF8 100%);
+        background: linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #C084FC 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 0.5rem;
+        letter-spacing: -0.5px;
     }
     .hero-subtitle {
         color: #94A3B8;
@@ -56,52 +57,61 @@ st.markdown("""
         max-width: 800px;
     }
 
-    /* ================== FORMULAIRE ================== */
+    /* ================== FORMULAIRE DARK GLASSMORPHISM ================== */
     div[data-testid="stForm"] {
-        background: rgba(255, 255, 255, 0.98);
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         padding: 2.2rem;
         border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     }
 
     /* Titres dans le formulaire */
     div[data-testid="stForm"] h3 {
-        color: #0F172A !important;
+        color: #F8FAFC !important;
         font-weight: 700 !important;
-        font-size: 1.25rem !important;
+        font-size: 1.2rem !important;
         margin-bottom: 1.5rem !important;
-        border-bottom: 2px solid #F1F5F9;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         padding-bottom: 0.5rem;
     }
 
     /* Labels */
     div[data-testid="stForm"] label {
-        color: #334155 !important;
+        color: #38BDF8 !important;
         font-weight: 600 !important;
-        font-size: 0.82rem !important;
+        font-size: 0.8rem !important;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.6px;
     }
 
     /* Champs texte / nombre / select */
     .stNumberInput input, .stSelectbox div[role="button"] {
-        background-color: #F8FAFC !important;
-        color: #0F172A !important;
+        background-color: rgba(15, 23, 42, 0.8) !important;
+        color: #F8FAFC !important;
         border-radius: 12px !important;
-        border: 1.5px solid #E2E8F0 !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
         font-weight: 500 !important;
     }
 
     .stNumberInput input:focus, .stSelectbox div[role="button"]:focus {
-        border-color: #0EA5E9 !important;
-        box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15) !important;
+        border-color: #38BDF8 !important;
+        box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+    }
+
+    /* Boutons +/- du number input */
+    .stNumberInput button {
+        background-color: rgba(15, 23, 42, 0.8) !important;
+        color: #F8FAFC !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
 
     /* Bouton d'envoi */
     div[data-testid="stFormSubmitButton"] button {
         width: 100%;
-        background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%) !important;
+        background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 100%) !important;
         color: #FFFFFF !important;
         border: none !important;
         border-radius: 14px !important;
@@ -109,47 +119,50 @@ st.markdown("""
         font-weight: 700 !important;
         padding: 0.85rem 1.5rem !important;
         margin-top: 1rem !important;
-        box-shadow: 0 10px 20px -5px rgba(14, 165, 233, 0.4);
-        transition: all 0.2s ease-in-out;
+        box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.5);
+        transition: all 0.3s ease;
     }
 
     div[data-testid="stFormSubmitButton"] button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 15px 25px -5px rgba(14, 165, 233, 0.5);
+        box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.6);
     }
 
-    /* ================== CARTE DE RÉSULTAT ================== */
+    /* ================== CARTE DE RÉSULTAT DARK ================== */
     .result-card {
-        background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
-        border: 2px solid #38BDF8;
+        background: rgba(30, 41, 59, 0.8);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(56, 189, 248, 0.4);
         border-radius: 24px;
-        padding: 2rem;
+        padding: 2.5rem;
         margin-top: 2rem;
         text-align: center;
-        box-shadow: 0 20px 40px -10px rgba(56, 189, 248, 0.2);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
         animation: fadeIn 0.4s ease-out;
     }
 
     .result-badge {
         display: inline-block;
-        background: #E0F2FE;
-        color: #0369A1;
+        background: rgba(56, 189, 248, 0.15);
+        color: #38BDF8;
+        border: 1px solid rgba(56, 189, 248, 0.3);
         font-weight: 700;
         font-size: 0.75rem;
         padding: 0.35rem 1rem;
         border-radius: 50px;
         text-transform: uppercase;
-        letter-spacing: 0.8px;
-        margin-bottom: 0.75rem;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
     }
 
     .result-price {
-        font-size: 3.2rem;
+        font-size: 3.5rem;
         font-weight: 800;
-        color: #0F172A;
+        color: #F8FAFC;
         letter-spacing: -1px;
         line-height: 1.1;
-        margin-bottom: 1rem;
+        margin-bottom: 1.2rem;
+        text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
     }
 
     .result-features {
@@ -160,12 +173,13 @@ st.markdown("""
     }
 
     .feature-chip {
-        background: #F1F5F9;
-        color: #475569;
+        background: rgba(15, 23, 42, 0.6);
+        color: #CBD5E1;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         font-weight: 600;
         font-size: 0.85rem;
-        padding: 0.4rem 0.9rem;
-        border-radius: 10px;
+        padding: 0.5rem 1rem;
+        border-radius: 12px;
     }
 
     /* Footer */
@@ -173,7 +187,7 @@ st.markdown("""
         text-align: center;
         margin-top: 3rem;
         padding-top: 1.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         color: #64748B;
         font-size: 0.85rem;
     }
@@ -333,7 +347,7 @@ if submitted:
         st.markdown(f"""
         <div class="result-card">
             <div class="result-badge">Résultat de l'estimation</div>
-            <div class="result-price">{formatted_price} <span style="font-size: 1.5rem; font-weight: 600;">BIF / mois</span></div>
+            <div class="result-price">{formatted_price} <span style="font-size: 1.5rem; font-weight: 600; color: #38BDF8;">BIF / mois</span></div>
             <div class="result-features">
                 <span class="feature-chip">📍 {quartier}</span>
                 <span class="feature-chip">📐 {superficie:.0f} m²</span>
