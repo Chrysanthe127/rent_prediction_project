@@ -75,9 +75,9 @@ Références objectives avant toute complexité :
 
 | Modèle | MAE (BIF) | R² |
 |--------|-----------|-----|
-| Dummy Regressor (Moyenne) | 125 230 | 0.000 |
-| Dummy Regressor (Médiane) | 120 100 | -0.012 |
-| Linear Regression | 81 200 | 0.765 |
+| Dummy Regressor (Moyenne) | 677 389 | -0.021 |
+| Dummy Regressor (Médiane) | 671 919| -0.005 |
+| Linear Regression | 178.308| 0.892 |
 
 ### Phase 6 — Model Experiments
 Comparaison rigoureuse via **5-Fold Cross-Validation** :
@@ -263,8 +263,4 @@ L'application Streamlit permet désormais aux agents de MEDIABOX et aux proprié
 Le pipeline est totalement reproductible, et toutes les décisions d'ingénierie sont strictement justifiées par les observations de l'EDA.
 
 📝 Auteurs
-Équipe MEDIABOX Burundi
-
-[Nom de l'étudiant]
-
-[Nom de l'encadrant]
+Ir.Chrysanthe Beni
