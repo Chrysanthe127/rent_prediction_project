@@ -12,7 +12,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ================== CSS PERSONNALISÉ DARK MODERN ==================
+# ================== CSS PERSONNALISÉ ULTRA-MODERNE DARK ==================
 st.markdown("""
 <style>
     /* Google Fonts */
@@ -22,32 +22,33 @@ st.markdown("""
         font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    /* Arrière-plan global */
+    /* Arrière-plan global hyper sombre avec dégradé subtil */
     .stApp {
-        background: radial-gradient(circle at top, #1E293B 0%, #0F172A 60%, #020617 100%);
-        color: #F8FAFC;
+        background: radial-gradient(circle at 50% 10%, #0F172A 0%, #090D16 50%, #030712 100%);
+        color: #E2E8F0;
     }
 
     /* En-tête principal */
     .hero-header {
         text-align: center;
-        padding: 1.5rem 0 2rem 0;
+        padding: 1.5rem 0 2.5rem 0;
     }
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.6rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #C084FC 100%);
+        background: linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #A855F7 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 0.5rem;
-        letter-spacing: -0.5px;
+        margin-bottom: 0.6rem;
+        letter-spacing: -0.8px;
     }
     .hero-subtitle {
         color: #94A3B8;
-        font-size: 1rem;
+        font-size: 1.05rem;
         font-weight: 400;
-        max-width: 600px;
+        max-width: 620px;
         margin: 0 auto;
+        line-height: 1.5;
     }
 
     /* Conteneur principal */
@@ -57,143 +58,153 @@ st.markdown("""
         max-width: 800px;
     }
 
-    /* ================== FORMULAIRE DARK GLASSMORPHISM ================== */
+    /* ================== FORMULAIRE DARK NEON ================== */
     div[data-testid="stForm"] {
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        padding: 2.2rem;
+        background: rgba(15, 23, 42, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 2.5rem;
         border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.05);
     }
 
     /* Titres dans le formulaire */
     div[data-testid="stForm"] h3 {
-        color: #F8FAFC !important;
+        color: #F1F5F9 !important;
         font-weight: 700 !important;
-        font-size: 1.2rem !important;
+        font-size: 1.25rem !important;
         margin-bottom: 1.5rem !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+        padding-bottom: 0.6rem;
     }
 
     /* Labels */
     div[data-testid="stForm"] label {
         color: #38BDF8 !important;
         font-weight: 600 !important;
-        font-size: 0.8rem !important;
+        font-size: 0.82rem !important;
         text-transform: uppercase;
-        letter-spacing: 0.6px;
+        letter-spacing: 0.8px;
     }
 
     /* Champs texte / nombre / select */
     .stNumberInput input, .stSelectbox div[role="button"] {
-        background-color: rgba(15, 23, 42, 0.8) !important;
-        color: #F8FAFC !important;
-        border-radius: 12px !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        background-color: #0B1120 !important;
+        color: #F1F5F9 !important;
+        border-radius: 14px !important;
+        border: 1px solid rgba(56, 189, 248, 0.25) !important;
         font-weight: 500 !important;
+        padding: 0.5rem 0.8rem !important;
     }
 
     .stNumberInput input:focus, .stSelectbox div[role="button"]:focus {
         border-color: #38BDF8 !important;
-        box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.3) !important;
     }
 
     /* Boutons +/- du number input */
     .stNumberInput button {
-        background-color: rgba(15, 23, 42, 0.8) !important;
-        color: #F8FAFC !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        background-color: #0B1120 !important;
+        color: #38BDF8 !important;
+        border: 1px solid rgba(56, 189, 248, 0.2) !important;
+        border-radius: 10px !important;
     }
 
-    /* Bouton d'envoi */
+    .stNumberInput button:hover {
+        background-color: #1E293B !important;
+        color: #7DD3FC !important;
+    }
+
+    /* ================== BOUTON SANS BLANC ================== */
     div[data-testid="stFormSubmitButton"] button {
         width: 100%;
-        background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 100%) !important;
-        color: #FFFFFF !important;
-        border: none !important;
-        border-radius: 14px !important;
-        font-size: 1.05rem !important;
+        background: linear-gradient(135deg, #0284C7 0%, #4F46E5 100%) !important;
+        color: #E0F2FE !important; /* Bleu très clair au lieu de blanc */
+        border: 1px solid rgba(56, 189, 248, 0.4) !important;
+        border-radius: 16px !important;
+        font-size: 1.1rem !important;
         font-weight: 700 !important;
-        padding: 0.85rem 1.5rem !important;
-        margin-top: 1rem !important;
-        box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.5);
-        transition: all 0.3s ease;
+        padding: 0.95rem 1.5rem !important;
+        margin-top: 1.2rem !important;
+        box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     div[data-testid="stFormSubmitButton"] button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.6);
+        transform: translateY(-3px);
+        background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 100%) !important;
+        color: #F0F9FF !important;
+        box-shadow: 0 15px 35px -5px rgba(56, 189, 248, 0.6);
+        border-color: #38BDF8 !important;
     }
 
-    /* ================== CARTE DE RÉSULTAT DARK ================== */
+    /* ================== CARTE DE RÉSULTAT DARK NEON ================== */
     .result-card {
-        background: rgba(30, 41, 59, 0.8);
-        backdrop-filter: blur(16px);
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(20px);
         border: 1px solid rgba(56, 189, 248, 0.4);
         border-radius: 24px;
         padding: 2.5rem;
         margin-top: 2rem;
         text-align: center;
-        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(56, 189, 248, 0.15);
         animation: fadeIn 0.4s ease-out;
     }
 
     .result-badge {
         display: inline-block;
-        background: rgba(56, 189, 248, 0.15);
+        background: rgba(56, 189, 248, 0.12);
         color: #38BDF8;
         border: 1px solid rgba(56, 189, 248, 0.3);
         font-weight: 700;
         font-size: 0.75rem;
-        padding: 0.35rem 1rem;
+        padding: 0.4rem 1.2rem;
         border-radius: 50px;
         text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 1rem;
+        letter-spacing: 1.2px;
+        margin-bottom: 1.2rem;
     }
 
     .result-price {
-        font-size: 3.5rem;
+        font-size: 3.6rem;
         font-weight: 800;
-        color: #F8FAFC;
-        letter-spacing: -1px;
+        color: #F1F5F9;
+        letter-spacing: -1.5px;
         line-height: 1.1;
         margin-bottom: 1.2rem;
-        text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        text-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
     }
 
     .result-features {
         display: flex;
         justify-content: center;
-        gap: 0.75rem;
+        gap: 0.85rem;
         flex-wrap: wrap;
     }
 
     .feature-chip {
-        background: rgba(15, 23, 42, 0.6);
-        color: #CBD5E1;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #0B1120;
+        color: #94A3B8;
+        border: 1px solid rgba(56, 189, 248, 0.2);
         font-weight: 600;
-        font-size: 0.85rem;
-        padding: 0.5rem 1rem;
-        border-radius: 12px;
+        font-size: 0.88rem;
+        padding: 0.55rem 1.1rem;
+        border-radius: 14px;
     }
 
     /* Footer */
     .footer {
         text-align: center;
-        margin-top: 3rem;
+        margin-top: 3.5rem;
         padding-top: 1.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        color: #64748B;
+        border-top: 1px solid rgba(56, 189, 248, 0.1);
+        color: #475569;
         font-size: 0.85rem;
     }
 
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
+        from { opacity: 0; transform: translateY(12px); }
         to { opacity: 1; transform: translateY(0); }
     }
 </style>
